@@ -1,0 +1,2 @@
+					N: XIC({0})OTE({1}.Raw);
+					N: DUCO_DI_AOI({1}_AOI,{1},ALARMS);

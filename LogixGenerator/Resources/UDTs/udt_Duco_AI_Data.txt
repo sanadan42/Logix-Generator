@@ -1,0 +1,14 @@
+	DATATYPE DUCO_AI_DATA (Description := "Duco Design$NAnalog Input$NUser Define Data Type",
+	                       FamilyType := NoFamily)
+		REAL Raw (Description := "Raw Input Value from Analog Input Module");
+		REAL PV (Description := "Scaled Process Variable");
+		REAL mA (Description := "Raw Input Converted to mili-amp");
+		SINT ZZZZZZZZZZDUCO_AI3 (Hidden := 1);
+		BIT Fault ZZZZZZZZZZDUCO_AI3 : 0 (Description := "Analog Fault Bit (1 = OK)");
+		DUCO_AI_CFG CFG (Description := "Analog Input Configuration");
+		DUCO_ALM HH (Description := "HH Alarm Data Structure");
+		DUCO_ALM H (Description := "H Alarm Data Structure");
+		DUCO_ALM L (Description := "L Alarm Data Structure");
+		DUCO_ALM LL (Description := "LL Alarm Data Structure");
+		DUCO_ALM Failed (Description := "Failed Alarm Data Structure");
+	END_DATATYPE

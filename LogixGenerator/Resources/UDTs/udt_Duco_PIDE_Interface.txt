@@ -1,0 +1,28 @@
+	DATATYPE DUCO_PIDE_Interface (FamilyType := NoFamily)
+		REAL PV (Description := "Process Variable (Engineering Units)");
+		REAL PVMin (Description := "Process Variable Minimum (Engineering Units)");
+		REAL PVMax (Description := "Process Variable Maximum $N(Engineering Units)");
+		REAL PV_NormalL (Description := "Process Variable Minimum Normal Operation Point (Engineering Units)");
+		REAL PV_NormalH (Description := "Process Variable Maximum Normal Operation Point (Engineering Units)");
+		REAL SP (Description := "PID Loop Setpoint (Engineering Units)");
+		REAL SPMin (Description := "PID Loop Setpoint Minimum (Engineering Units)");
+		REAL SPMax (Description := "PID Loop Setpoint  Maximum (Engineering Units)");
+		REAL SP_NormalL (Description := "PID Loop Setpoint Minimum Normal Operation Point (Engineering Units)");
+		REAL SP_NormalH (Description := "PID Loop Setpoint Maximum Normal Operation Point (Engineering Units)");
+		REAL SP_Read (Description := "PID Loop Setpoint  Read (Engineering Units)");
+		REAL CV (Description := "Commanded CV");
+		REAL Gain (Description := "PID Gain");
+		REAL Integral (Description := "PID Integral");
+		REAL Derivative (Description := "PID Derivative");
+		DINT SP_RampSP (Description := "SP Ramp Time in Seconds");
+		DINT Active (Description := "Number of the Active PID loop in a low select loop");
+		DINT Mode_FB (Description := "PIDE Mode Feedback Status");
+		SINT ZZZZZZZZZZKW_HMI_PID19 (Hidden := 1);
+		BIT AM ZZZZZZZZZZKW_HMI_PID19 : 0 (Description := "1 = Manual$N0 = Auto");
+		BIT Cascade ZZZZZZZZZZKW_HMI_PID19 : 1 (Description := "1 = Cascade, 0 = look at AM bit");
+		BIT HMI_Auto_CMD ZZZZZZZZZZKW_HMI_PID19 : 2 (Description := "HMI Auto Command 1 = Auto");
+		BIT HMI_Manual_CMD ZZZZZZZZZZKW_HMI_PID19 : 3 (Description := "HMI Manual Command$N1=MAN");
+		BIT HMI_OverRide_On_CMD ZZZZZZZZZZKW_HMI_PID19 : 4 (Description := "HMI Over Ride On Command");
+		BIT HMI_OverRide_Off_CMD ZZZZZZZZZZKW_HMI_PID19 : 5 (Description := "HMI Over Ride Off Command");
+		BIT HMI_OverRide_Status ZZZZZZZZZZKW_HMI_PID19 : 6 (Description := "HMI Over Ride Status");
+	END_DATATYPE

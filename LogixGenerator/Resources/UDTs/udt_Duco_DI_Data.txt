@@ -1,0 +1,6 @@
+	DATATYPE DUCO_DI_DATA (FamilyType := NoFamily)
+		SINT ZZZZZZZZZZDUCO_DI_DA0 (Hidden := 1);
+		BIT Input ZZZZZZZZZZDUCO_DI_DA0 : 0 (Description := "Discrete Input Mapped from Channel");
+		BIT Raw ZZZZZZZZZZDUCO_DI_DA0 : 1 (Description := "Raw Conditioned Input");
+		DUCO_ALM Alarm (Description := "Duco Alarm Data Type");
+	END_DATATYPE

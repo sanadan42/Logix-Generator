@@ -1,0 +1,323 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="addressAI" xml:space="preserve">
+    <value>{0}:{1}:I.Ch{2}Data</value>
+    <comment>{0} = Rack, {1} = Slot, {2} = Channel</comment>
+  </data>
+  <data name="addressAO" xml:space="preserve">
+    <value>{0}:{1}:O.Ch{2}Data</value>
+    <comment>{0} = Rack, {1} = Slot, {2} = Channel</comment>
+  </data>
+  <data name="addressDI" xml:space="preserve">
+    <value>{0}:{1}:I.Data.{2}</value>
+    <comment>{0} = Rack, {1} = Slot, {2} = Channel</comment>
+  </data>
+  <data name="addressDO" xml:space="preserve">
+    <value>{0}:{1}:O.Data.{2}</value>
+    <comment>{0} = Rack, {1} = Slot, {2} = Channel</comment>
+  </data>
+  <data name="alarmData" xml:space="preserve">
+    <value>[{0},{1},{2}]</value>
+    <comment>{0} = Alarm Enable + FO Enable, {1} Debounce Preset, {3} = SP</comment>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="aoi_AI" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\aois\aoi_ai.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="aoi_Alarm" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\aois\aoi_alarm.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="aoi_Alarm_CTL" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\aois\aoi_alarm_ctl.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="aoi_DI" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\aois\aoi_di.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="aoi_Duco_SP_Ramp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\aois\aoi_duco_sp_ramp.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="aoi_High_Low_Select" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\aois\aoi_high_low_select.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="aoi_SCP" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\aois\aoi_scp.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="controllerFooter" xml:space="preserve">
+    <value>END_CONTROLLER</value>
+  </data>
+  <data name="ctl_Controller_Definition" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\other\ctl_controller_definition.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="header" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\other\header.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="logicAIName" xml:space="preserve">
+    <value>d_AnalogInputs</value>
+  </data>
+  <data name="logicAOName" xml:space="preserve">
+    <value>d_AnalogOutputs</value>
+  </data>
+  <data name="logicDIName" xml:space="preserve">
+    <value>c_DiscreteInputs</value>
+  </data>
+  <data name="logicDOName" xml:space="preserve">
+    <value>c_DiscreteOutputs</value>
+  </data>
+  <data name="logicFooter" xml:space="preserve">
+    <value>END_ROUTINE</value>
+  </data>
+  <data name="logicLadderHeader" xml:space="preserve">
+    <value>ROUTINE </value>
+  </data>
+  <data name="logic_AI" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\logic\logic_ai.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="logic_AO" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\logic\logic_ao.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="logic_DI" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\logic\logic_di.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="logic_DO" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\logic\logic_do.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="logic_Main" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\logic\logic_main.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="logic_Main_Outputs" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\logic\logic_main_outputs.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="logic_OutputConditioningHeader" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\logic\logic_outputconditioningheader.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="logic_ProgramCfg" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\logic\logic_programcfg.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="logic_ProgramHeader" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\logic\logic_programheader.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="ProcessorList" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\other\processorlist.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="tagAI" xml:space="preserve">
+    <value>{0} : DUCO_AI_DATA (Description:= {10}) := [0.0e+0,0.0e+0,0.0e+0,0,[{1},{2},{3},{4}],{5},{6},{7},{8},{9}];</value>
+    <comment>{0} = Tag Name, {1} = PV min and Max, {2} = Raw Min and Max, {3} = Failed Min and Max, {4} = Hysterisis, {5} = HH, {6} = H, {7} = L, {8} = LL, {9} = Failed, {10} = Description</comment>
+  </data>
+  <data name="tagAIAOI" xml:space="preserve">
+    <value>{0}_AOI : DUCO_AI_AOI (Description:= Add on instruction for {1});</value>
+    <comment>{0} = Tag Name, {1} = Description</comment>
+  </data>
+  <data name="tagAO" xml:space="preserve">
+    <value>{0} : REAL (Description := {1}) := 0;</value>
+    <comment>{0} = Tag Name, {1} = Description</comment>
+  </data>
+  <data name="tagDI" xml:space="preserve">
+    <value>{0} : DUCO_DI_DATA (Description:= {2})  := [0,{1}];</value>
+    <comment>{0} = Tag Name, {1} = Alarm Configuration, {2} = Description</comment>
+  </data>
+  <data name="tagDIAOI" xml:space="preserve">
+    <value>{0}_AOI : DUCO_DI_AOI (Description:= Add on instruction for {1});</value>
+    <comment>{0} = Tag Name, {1} = Decription</comment>
+  </data>
+  <data name="tagDO" xml:space="preserve">
+    <value>{0} : BOOL(Description := {1}) := 0;</value>
+    <comment>{0} = Tag Name, {1} = Description</comment>
+  </data>
+  <data name="task_FastTask" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\other\task_fasttask.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="udt_Duco_AI_CFG" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\udts\udt_duco_ai_cfg.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="udt_Duco_AI_Data" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\udts\udt_duco_ai_data.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="udt_Duco_Alarm_Bits" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\udts\udt_duco_alarm_bits.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="udt_Duco_Alm" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\udts\udt_duco_alm.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="udt_Duco_Clock" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\udts\udt_duco_clock.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="udt_Duco_DI_Data" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\udts\udt_duco_di_data.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="udt_Duco_LeadLag_Interface" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\udts\udt_duco_leadlag_interface.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="udt_DUCO_LeadLag_SP" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\udts\udt_duco_leadlag_sp.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="udt_Duco_Limits" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\udts\udt_duco_limits.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="udt_Duco_Motor" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\udts\udt_duco_motor.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="udt_Duco_PIDE_Interface" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\udts\udt_duco_pide_interface.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="logic_AO1769" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\logic\logic_ao1769.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="tagAOSCP" xml:space="preserve">
+    <value>{0}_SCP : DUCO_SCP_AOI;</value>
+  </data>
+  <data name="aoi_Run_Hours" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\aois\aoi_run_hours.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="hmiAlarmFooter" xml:space="preserve">
+    <value>&lt;/alarm&gt;</value>
+  </data>
+  <data name="hmiAlarmHeader" xml:space="preserve">
+    <value>&lt;alarm history-size="128" display-name="[ALARM]" hold-time="250" max-update-rate="1.00" embedded-server-update-rate="1.00" silence-tag="" remote-silence-exp="" remote-ack-all-exp="" status-reset-tag="" remote-status-reset-exp="" close-display-tag="" remote-close-display-exp=""&gt;</value>
+  </data>
+  <data name="hmiAlarmsFooter" xml:space="preserve">
+    <value>&lt;/alarms&gt;</value>
+  </data>
+  <data name="hmiAlarmsHeader" xml:space="preserve">
+    <value>&lt;alarms version="1.0" product="{E44CB020-C21D-11D3-8A3F-0010A4EF3494}" id="Alarms"&gt;</value>
+  </data>
+  <data name="hmiFileHeader" xml:space="preserve">
+    <value>&lt;?xml version="1.0" encoding="UTF-8"?&gt;</value>
+  </data>
+  <data name="hmiMessages" xml:space="preserve">
+    <value>&lt;message id="{0}" trigger-value="1" trigger="#{1}" backcolor="{3}" forecolor="{4}" audio="false" display="true" print="false" message-to-tag="false" text="{2}"/&gt;</value>
+    <comment>{0} = message id, {1} = trigger id, {2} = message, {3} = back color code, {4} = fore color code</comment>
+  </data>
+  <data name="hmiMessagesFooter" xml:space="preserve">
+    <value>&lt;/messages&gt;</value>
+  </data>
+  <data name="hmiMessagesHeader" xml:space="preserve">
+    <value>&lt;messages&gt;</value>
+  </data>
+  <data name="hmiTriggers" xml:space="preserve">
+    <value>&lt;trigger id="{0}" type="value" ack-all-value="0" use-ack-all="false" ack-tag="" exp="{{[PLC]{1}}}" message-tag="" message-handshake-exp="" message-notification-tag="" remote-ack-exp="" remote-ack-handshake-tag="" label="{2}" handshake-tag=""/&gt;</value>
+    <comment>{0} = trigger id, {1} = trigger value {[PLC]ai_AIT04270J.H.Latched}, {2} = label</comment>
+  </data>
+  <data name="hmiTriggersFooter" xml:space="preserve">
+    <value>&lt;/triggers&gt;</value>
+  </data>
+  <data name="hmiTriggersHeader" xml:space="preserve">
+    <value>&lt;triggers&gt;</value>
+  </data>
+</root>

@@ -1,0 +1,1 @@
+					N: MOV({0},{1}.Raw)DUCO_AI_AOI({1}_AOI,{1},ALARMS);

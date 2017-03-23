@@ -1,0 +1,11 @@
+	DATATYPE Duco_Clock (Description := "Duco$NClock Data Type",
+	                     FamilyType := NoFamily)
+		DINT Year;
+		DINT Month;
+		DINT Day;
+		DINT Hour;
+		DINT Minute;
+		DINT Second;
+		DINT Microsecond;
+		DINT Day_of_Week;
+	END_DATATYPE

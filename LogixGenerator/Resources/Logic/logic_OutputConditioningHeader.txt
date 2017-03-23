@@ -1,0 +1,5 @@
+PROGRAM OutputConditioning (MAIN := "a_Main",
+	                          MODE := 0,
+	                          DisableFlag := 0)
+			TAG
+			END_TAG

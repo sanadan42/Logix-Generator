@@ -1,0 +1,5 @@
+			ROUTINE a_Main 
+					N: NOP();
+					N: JSR({0},0);
+					N: JSR({1},0);
+			END_ROUTINE

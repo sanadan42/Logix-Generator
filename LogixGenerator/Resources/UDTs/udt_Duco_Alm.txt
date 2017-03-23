@@ -1,0 +1,13 @@
+	DATATYPE DUCO_ALM (FamilyType := NoFamily)
+		SINT ZZZZZZZZZZDUCO_ALM0 (Hidden := 1);
+		BIT Enable ZZZZZZZZZZDUCO_ALM0 : 0 (Description := "1 = Enable");
+		BIT FO_Enable ZZZZZZZZZZDUCO_ALM0 : 1 (Description := "1 = Enable");
+		BIT Bypass ZZZZZZZZZZDUCO_ALM0 : 2 (Description := "1 = Bypass");
+		BIT Condition ZZZZZZZZZZDUCO_ALM0 : 3 (Description := "Alarm Conditioning (ie. Pump Run Status for a Low Pressure)");
+		BIT Latched ZZZZZZZZZZDUCO_ALM0 : 4 (Description := "Latched Alarm (1 = OK, 0 = Alarm)");
+		BIT UnLatched ZZZZZZZZZZDUCO_ALM0 : 5 (Description := "Unlatched Alarm (1 = OK, 0 = Alarm)");
+		BIT UnAcked ZZZZZZZZZZDUCO_ALM0 : 6 (Description := "UnAcked Alarm (1 = OK, 0 = Alarm)");
+		BIT FO ZZZZZZZZZZDUCO_ALM0 : 7 (Description := "FO Alarm (1 = OK, 0 = Alarm)");
+		DINT Deb (Description := "Alarm Debounce Setpoint");
+		REAL SP (Description := "Alarm Setpoint");
+	END_DATATYPE

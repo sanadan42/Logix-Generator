@@ -1,0 +1,89 @@
+	ADD_ON_INSTRUCTION_DEFINITION DUCO_AI_AOI (Description := "Analog Input Data Processing",
+	                                           Revision := "1.0",
+	                                           ExecutePrescan := No,
+	                                           ExecutePostscan := No,
+	                                           ExecuteEnableInFalse := No,
+	                                           CreatedDate := "2016-03-30T20:32:15.687Z",
+	                                           CreatedBy := "Mark Dodd",
+	                                           EditedDate := "2016-04-01T18:01:36.375Z",
+	                                           EditedBy := "Mark Dodd",
+	                                           SoftwareRevision := "v20.01")
+		
+		PARAMETERS
+			EnableIn : BOOL (Description := "Enable Input - System Defined Parameter",
+			                    Usage := Input,
+			                    RADIX := Decimal,
+			                    Required := No,
+			                    Visible := No,
+			                    ExternalAccess := Read Only);
+			EnableOut : BOOL (Description := "Enable Output - System Defined Parameter",
+			                     Usage := Output,
+			                     RADIX := Decimal,
+			                     Required := No,
+			                     Visible := No,
+			                     ExternalAccess := Read Only);
+			Analog : DUCO_AI_DATA (Usage := InOut,
+			                  Required := Yes,
+			                  Visible := Yes);
+			Alarms : DUCO_Alarm_Bits (Usage := InOut,
+			                  Required := Yes,
+			                  Visible := Yes);
+		END_PARAMETERS
+
+		LOCAL_TAGS
+			SCP : DUCO_SCP_AOI (ExternalAccess := None,
+			              DefaultData := "[1,0.00000000e+000,0.00000000e+000,0.00000000e+000,0.00000000e+000,0.00000000e+000,0.00000000e+000]");
+			SCP_ma : DUCO_SCP_AOI (ExternalAccess := None,
+			              DefaultData := "[1,0.00000000e+000,0.00000000e+000,0.00000000e+000,0.00000000e+000,0.00000000e+000,0.00000000e+000]");
+			HH_ALARM : DUCO_Alarm_AOI (ExternalAccess := None,
+			                   DefaultData := "[1,[0,0,0]]");
+			HH_In : BOOL (RADIX := Decimal,
+			                ExternalAccess := None,
+			                DefaultData := 0);
+			H_In : BOOL (RADIX := Decimal,
+			               ExternalAccess := None,
+			               DefaultData := 0);
+			L_In : BOOL (RADIX := Decimal,
+			               ExternalAccess := None,
+			               DefaultData := 0);
+			LL_In : BOOL (RADIX := Decimal,
+			                ExternalAccess := None,
+			                DefaultData := 0);
+			H_ALARM : DUCO_Alarm_AOI (ExternalAccess := None,
+			                  DefaultData := "[1,[0,0,0]]");
+			L_ALARM : DUCO_Alarm_AOI (ExternalAccess := None,
+			                  DefaultData := "[1,[0,0,0]]");
+			LL_ALARM : DUCO_Alarm_AOI (ExternalAccess := None,
+			                   DefaultData := "[1,[0,0,0]]");
+			Failed_In : BOOL (RADIX := Decimal,
+			                    ExternalAccess := None,
+			                    DefaultData := 0);
+			HH_SP_Hys : REAL (RADIX := Float,
+			                    ExternalAccess := None,
+			                    DefaultData := 0.00000000e+000);
+			LL_SP_Hys : REAL (RADIX := Float,
+			                    ExternalAccess := None,
+			                    DefaultData := 0.00000000e+000);
+			L_SP_Hys : REAL (RADIX := Float,
+			                   ExternalAccess := None,
+			                   DefaultData := 0.00000000e+000);
+			H_SP_Hys : REAL (RADIX := Float,
+			                   ExternalAccess := None,
+			                   DefaultData := 0.00000000e+000);
+			Failed_ALARM : DUCO_Alarm_AOI (ExternalAccess := None,
+			                       DefaultData := "[1,[0,0,0]]");
+		END_LOCAL_TAGS
+
+		ROUTINE Logic 
+				N: NOP();
+				N: DUCO_SCP_AOI(SCP_ma,Analog.Raw,Analog.CFG.Raw.Min,Analog.CFG.Raw.Max,4.0,20.0,Analog.ma)DUCO_SCP_AOI(SCP,Analog.Raw,Analog.CFG.Raw.Min,Analog.CFG.Raw.Max,Analog.CFG.PV.Min,Analog.CFG.PV.Max,Analog.PV);
+				N: MOV(Analog.Raw,Analog.mA)DUCO_SCP_AOI(SCP,Analog.Raw,Analog.CFG.Raw.Min,Analog.CFG.Raw.Max,Analog.CFG.PV.Min,Analog.CFG.PV.Max,Analog.PV);
+				N: SUB(Analog.HH.SP,Analog.CFG.Hysterisis,HH_SP_Hys)LES(Analog.PV,Analog.HH.SP)[LES(Analog.PV,HH_SP_Hys) ,XIC(HH_In) ]OTE(HH_In);
+				N: SUB(Analog.H.SP,Analog.CFG.Hysterisis,H_SP_Hys)LES(Analog.PV,Analog.H.SP)[LES(Analog.PV,H_SP_Hys) ,XIC(H_In) ]OTE(H_In);
+				N: ADD(Analog.L.SP,Analog.CFG.Hysterisis,L_SP_Hys)GRT(Analog.PV,Analog.L.SP)[LES(Analog.PV,L_SP_Hys) ,XIC(L_In) ]OTE(L_In);
+				N: ADD(Analog.LL.SP,Analog.CFG.Hysterisis,LL_SP_Hys)GRT(Analog.PV,Analog.LL.SP)[LES(Analog.PV,LL_SP_Hys) ,XIC(LL_In) ]OTE(LL_In);
+				N: LIM(Analog.CFG.Fail.Min,Analog.mA,Analog.CFG.Fail.Max)XIC(Analog.Fault)OTE(Failed_In);
+				N: DUCO_Alarm_AOI(HH_ALARM,HH_In,Analog.HH,Alarms)DUCO_Alarm_AOI(H_ALARM,H_In,Analog.H,Alarms)DUCO_Alarm_AOI(L_ALARM,L_In,Analog.L,Alarms)DUCO_Alarm_AOI(LL_ALARM,LL_In,Analog.LL,Alarms)DUCO_Alarm_AOI(Failed_ALARM,Failed_In,Analog.Failed,Alarms);
+		END_ROUTINE
+
+	END_ADD_ON_INSTRUCTION_DEFINITION

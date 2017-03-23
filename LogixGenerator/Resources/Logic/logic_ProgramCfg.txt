@@ -1,0 +1,3 @@
+			ROUTINE b_Program_Cfg 
+					N: GSV(WallClockTime,,LocalDateTime,udt_Clock.Year);
+			END_ROUTINE

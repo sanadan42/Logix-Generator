@@ -1,0 +1,73 @@
+	ADD_ON_INSTRUCTION_DEFINITION Duco_SP_RAMP (Revision := "1.0",
+	                                          Vendor := "Kilowatts Deisgn Company Ltd.",
+	                                          ExecutePrescan := No,
+	                                          ExecutePostscan := No,
+	                                          ExecuteEnableInFalse := No,
+	                                          CreatedDate := "2012-03-18T10:22:44.613Z",
+	                                          CreatedBy := "Mark Dodd",
+	                                          EditedDate := "2013-03-19T20:02:05.158Z",
+	                                          EditedBy := "Mark Dodd",
+	                                          SoftwareRevision := "v20.00")
+		
+		PARAMETERS
+			EnableIn : BOOL (Description := "Enable Input - System Defined Parameter",
+			                    Usage := Input,
+			                    RADIX := Decimal,
+			                    Required := No,
+			                    Visible := No,
+			                    ExternalAccess := Read Only);
+			EnableOut : BOOL (Description := "Enable Output - System Defined Parameter",
+			                     Usage := Output,
+			                     RADIX := Decimal,
+			                     Required := No,
+			                     Visible := No,
+			                     ExternalAccess := Read Only);
+			SP_IN : REAL (Description := "Enter the Desired Setpoint",
+			                 Usage := Input,
+			                 RADIX := Float,
+			                 Required := Yes,
+			                 Visible := Yes,
+			                 DefaultData := 0.00000000e+000);
+			RAMP_TIME : DINT (Description := "Enter Ramp Time in Seconds",
+			                     Usage := Input,
+			                     RADIX := Decimal,
+			                     Required := Yes,
+			                     Visible := Yes,
+			                     DefaultData := 0);
+			AM : BOOL (Description := "PID Loop Auto/Manual (1 = Auto, 0 = Manual) In manual mode OUT follows IN.",
+			              Usage := Input,
+			              RADIX := Decimal,
+			              Required := Yes,
+			              Visible := Yes,
+			              DefaultData := 0);
+			OUT : REAL (Description := "Output of Ramp",
+			               Usage := Output,
+			               RADIX := Float,
+			               Required := Yes,
+			               Visible := Yes,
+			               ExternalAccess := Read Only,
+			               DefaultData := 0.00000000e+000);
+		END_PARAMETERS
+
+		LOCAL_TAGS
+			SP_LAST : REAL (Description := "Used to determine if SP has changed",
+			                  RADIX := Float,
+			                  ExternalAccess := Read/Write,
+			                  DefaultData := 0.00000000e+000);
+			SP_CALC : REAL (Description := "Snap Shot of the Previous SP",
+			                  RADIX := Float,
+			                  ExternalAccess := Read/Write,
+			                  DefaultData := 0.00000000e+000);
+			DeltaT : DINT (RADIX := Decimal,
+			                 ExternalAccess := Read/Write,
+			                 DefaultData := 0);
+		END_LOCAL_TAGS
+
+		ROUTINE Logic 
+				N: NEQ(SP_IN,SP_LAST)[MOV(OUT,SP_CALC) ,MOV(SP_IN,SP_LAST) ];
+				N: GSV(Task,THIS,Rate,DeltaT);
+				N: [LEQ(RAMP_TIME,0) ,XIC(AM) ]MOV(SP_IN,OUT);
+				N: GRT(RAMP_TIME,0)[CPT(OUT,OUT + (SP_IN-SP_CALC)*DeltaT/(RAMP_TIME*1000000.0)) ,[CMP(SP_IN-SP_CALC < 0) LEQ(OUT,SP_IN) ,CMP(SP_IN-SP_CALC>0) GEQ(OUT,SP_IN) ] MOV(SP_IN,OUT) ];
+		END_ROUTINE
+
+	END_ADD_ON_INSTRUCTION_DEFINITION

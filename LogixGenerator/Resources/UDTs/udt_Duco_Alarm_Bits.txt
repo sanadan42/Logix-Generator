@@ -1,0 +1,15 @@
+	DATATYPE DUCO_Alarm_Bits (Description := "Duco Program Alarm Bit Management",
+	                          FamilyType := NoFamily)
+		SINT ZZZZZZZZZZDUCO_Alarm0 (Hidden := 1);
+		BIT HMI_ESD ZZZZZZZZZZDUCO_Alarm0 : 0 (Description := "HMI ESD Bit");
+		BIT HMI_ACK ZZZZZZZZZZDUCO_Alarm0 : 1 (Description := "HMI Acknowledge Bit");
+		BIT HMI_Reset ZZZZZZZZZZDUCO_Alarm0 : 2 (Description := "HMI Reset Bit");
+		BIT HMI_Global_Reset ZZZZZZZZZZDUCO_Alarm0 : 3 (Description := "HMI Global Reset Bit");
+		BIT Physical_Reset ZZZZZZZZZZDUCO_Alarm0 : 4 (Description := "Physical ESD Circuit Reset Button");
+		BIT Ack ZZZZZZZZZZDUCO_Alarm0 : 5 (Description := "Internal Acknowledge Bit");
+		BIT Reset ZZZZZZZZZZDUCO_Alarm0 : 6 (Description := "Internal Reset Bit");
+		BIT Global_Reset ZZZZZZZZZZDUCO_Alarm0 : 7 (Description := "Internal Global$N Reset");
+		SINT ZZZZZZZZZZDUCO_Alarm9 (Hidden := 1);
+		BIT Scan_FO_Flag ZZZZZZZZZZDUCO_Alarm9 : 0 (Description := "First Out Alarm Detected In Present Scan");
+		BIT FO_Flag ZZZZZZZZZZDUCO_Alarm9 : 1 (Description := "First Out Alarm Present in the System");
+	END_DATATYPE

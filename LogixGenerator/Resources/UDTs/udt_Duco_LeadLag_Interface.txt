@@ -1,0 +1,17 @@
+	DATATYPE DUCO_LEADLAG_Interface (FamilyType := NoFamily)
+		SINT ZZZZZZZZZZKW_LEADLAG0 (Hidden := 1);
+		BIT A_Lead_CMD ZZZZZZZZZZKW_LEADLAG0 : 0 (Description := "Pump A HMI Lead Command");
+		BIT A_Lag_CMD ZZZZZZZZZZKW_LEADLAG0 : 1 (Description := "Pump A HMI Lag Command");
+		BIT B_Lead_CMD ZZZZZZZZZZKW_LEADLAG0 : 2 (Description := "Pump B HMI Lead Command");
+		BIT B_Lag_CMD ZZZZZZZZZZKW_LEADLAG0 : 3 (Description := "Pump B HMI Lag Command");
+		BIT A_LL_Stat ZZZZZZZZZZKW_LEADLAG0 : 4 (Description := "Pump A Lead / Lag Status$N1 = Lead");
+		BIT B_LL_Stat ZZZZZZZZZZKW_LEADLAG0 : 5 (Description := "Pump B Lead / Lag Status$N1 = Lead");
+		BIT HMI_Lead_Start ZZZZZZZZZZKW_LEADLAG0 : 6 (Description := "HMI Lead Pump Start Command");
+		BIT HMI_Lead_Stop ZZZZZZZZZZKW_LEADLAG0 : 7 (Description := "HMI Lead Pump Stop Command");
+		SINT ZZZZZZZZZZKW_LEADLAG9 (Hidden := 1);
+		BIT HMI_Lag_Start ZZZZZZZZZZKW_LEADLAG9 : 0 (Description := "HMI Lag Pump Start Command");
+		BIT HMI_Lag_Stop ZZZZZZZZZZKW_LEADLAG9 : 1 (Description := "HMI Lag Pump Stop Command");
+		BIT Lead_Control ZZZZZZZZZZKW_LEADLAG9 : 2 (Description := "Lead Control Bit$N1 = Run");
+		BIT Lag_Control ZZZZZZZZZZKW_LEADLAG9 : 3 (Description := "Lag Control Bit$N1 = Run");
+		Duco_LeadLag_SP SP (Description := "Start / Stop Setpoints");
+	END_DATATYPE

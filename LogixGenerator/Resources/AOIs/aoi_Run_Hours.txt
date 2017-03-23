@@ -1,0 +1,118 @@
+	ADD_ON_INSTRUCTION_DEFINITION RUN_HOURS (Revision := "1.0",
+	                                         ExecutePrescan := No,
+	                                         ExecutePostscan := No,
+	                                         ExecuteEnableInFalse := No,
+	                                         CreatedDate := "2012-03-09T10:12:44.142Z",
+	                                         CreatedBy := "Mark Dodd",
+	                                         EditedDate := "2013-03-19T20:02:06.221Z",
+	                                         EditedBy := "Mark Dodd",
+	                                         SoftwareRevision := "v20.00")
+		
+		PARAMETERS
+			EnableIn : BOOL (Description := "Enable Input - System Defined Parameter",
+			                    Usage := Input,
+			                    RADIX := Decimal,
+			                    Required := No,
+			                    Visible := No,
+			                    ExternalAccess := Read Only);
+			EnableOut : BOOL (Description := "Enable Output - System Defined Parameter",
+			                     Usage := Output,
+			                     RADIX := Decimal,
+			                     Required := No,
+			                     Visible := No,
+			                     ExternalAccess := Read Only);
+			Run : BOOL (Usage := Input,
+			               RADIX := Decimal,
+			               Required := Yes,
+			               Visible := Yes,
+			               DefaultData := 0);
+			Reset : BOOL (Usage := Input,
+			                 RADIX := Decimal,
+			                 Required := No,
+			                 Visible := No,
+			                 DefaultData := 0);
+			MaintenanceSP : DINT (Description := "Maximum Hours Between Maintenance",
+			                         Usage := Input,
+			                         RADIX := Decimal,
+			                         Required := No,
+			                         Visible := No,
+			                         DefaultData := 0);
+			ResettableHoursAcc : DINT (Description := "Resetable Run Hour Accumulated Run Hours",
+			                              Usage := Output,
+			                              RADIX := Decimal,
+			                              Required := No,
+			                              Visible := No,
+			                              ExternalAccess := Read Only,
+			                              DefaultData := 0);
+			ResettableMinutesAcc : DINT (Description := "Resetable Accumulated Run Minutes (0-59)",
+			                                Usage := Output,
+			                                RADIX := Decimal,
+			                                Required := No,
+			                                Visible := No,
+			                                ExternalAccess := Read Only,
+			                                DefaultData := 0);
+			NonResettableHoursAcc : DINT (Description := "Non-Resetable Run Hour Accumulated Run Hours",
+			                                 Usage := Output,
+			                                 RADIX := Decimal,
+			                                 Required := No,
+			                                 Visible := No,
+			                                 ExternalAccess := Read Only,
+			                                 DefaultData := 0);
+			NonResettableMinutesAcc : DINT (Description := "Non-Resettable Accumulated Minutes (0-59)",
+			                                   Usage := Output,
+			                                   RADIX := Decimal,
+			                                   Required := No,
+			                                   Visible := No,
+			                                   ExternalAccess := Read Only,
+			                                   DefaultData := 0);
+			HoursTillMaintenance : DINT (Description := "Hours left before next maintenance is required.",
+			                                Usage := Output,
+			                                RADIX := Decimal,
+			                                Required := No,
+			                                Visible := No,
+			                                ExternalAccess := Read Only,
+			                                DefaultData := 0);
+			MaintenanceRequired : BOOL (Description := "Maintenance Required status.",
+			                               Usage := Output,
+			                               RADIX := Decimal,
+			                               Required := No,
+			                               Visible := No,
+			                               ExternalAccess := Read Only,
+			                               DefaultData := 0);
+		END_PARAMETERS
+
+		LOCAL_TAGS
+			tmr_Run_Hour : TIMER (ExternalAccess := None,
+			                       DefaultData := "[0,0,0]");
+			tmr_Total_Run_Hour : TIMER (ExternalAccess := None,
+			                             DefaultData := "[0,0,0]");
+			TotalRunHoursAcc : DINT (Description := "Non-Resettable Accumulated Hours",
+			                           RADIX := Decimal,
+			                           ExternalAccess := None,
+			                           DefaultData := 0);
+			TotalMinutesAcc : DINT (RADIX := Decimal,
+			                          ExternalAccess := None,
+			                          DefaultData := 0);
+			TotalHoursReset : BOOL (RADIX := Decimal,
+			                          ExternalAccess := Read/Write,
+			                          DefaultData := 0);
+		END_LOCAL_TAGS
+
+		ROUTINE Logic 
+				N: XIC(S:FS)OTL(Reset);
+				N: MOV(3600000,tmr_Run_Hour.PRE);
+				N: XIC(Run)RTO(tmr_Run_Hour,?,?);
+				N: XIC(tmr_Run_Hour.DN)[ADD(1,ResettableHoursAcc,ResettableHoursAcc) ,GEQ(MaintenanceSP,ResettableHoursAcc) SUB(MaintenanceSP,ResettableHoursAcc,HoursTillMaintenance) ]RES(tmr_Run_Hour);
+				N: DIV(tmr_Run_Hour.ACC,60000,ResettableMinutesAcc);
+				N: XIC(Reset)CLR(ResettableHoursAcc)CLR(ResettableMinutesAcc)RES(tmr_Run_Hour)OTU(Reset);
+				N: LEQ(ResettableHoursAcc,0)OTE(MaintenanceRequired);
+				N: XIC(S:FS)OTL(TotalHoursReset);
+				N: MOV(3600000,tmr_Total_Run_Hour.PRE);
+				N: XIC(Run)RTO(tmr_Total_Run_Hour,?,?);
+				N: XIC(tmr_Total_Run_Hour.DN)ADD(1,TotalRunHoursAcc,TotalRunHoursAcc)RES(tmr_Total_Run_Hour);
+				N: DIV(tmr_Total_Run_Hour.ACC,60000,TotalMinutesAcc);
+				N: XIC(TotalHoursReset)CLR(TotalRunHoursAcc)CLR(TotalMinutesAcc)RES(tmr_Total_Run_Hour)OTU(TotalHoursReset);
+				N: MOV(TotalRunHoursAcc,NonResettableHoursAcc)MOV(TotalMinutesAcc,NonResettableMinutesAcc);
+		END_ROUTINE
+
+	END_ADD_ON_INSTRUCTION_DEFINITION

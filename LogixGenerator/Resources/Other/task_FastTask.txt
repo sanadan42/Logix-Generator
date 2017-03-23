@@ -1,0 +1,9 @@
+	TASK FastTask (Type := PERIODIC,
+	               Rate := 100,
+	               Priority := 1,
+	               Watchdog := 500,
+	               DisableUpdateOutputs := No,
+	               InhibitTask := No)
+			InputConditoning;
+			OutputConditioning;
+	END_TASK

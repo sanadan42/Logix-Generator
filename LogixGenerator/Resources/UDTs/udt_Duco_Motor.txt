@@ -1,0 +1,26 @@
+	DATATYPE DUCO_Motor_Interface (FamilyType := NoFamily)
+		SINT ZZZZZZZZZZKW_Motor_I0 (Hidden := 1);
+		BIT HMI_Enable ZZZZZZZZZZKW_Motor_I0 : 0 (Description := "HMI Enable Command");
+		BIT HMI_Disable ZZZZZZZZZZKW_Motor_I0 : 1 (Description := "HMI Disable Command");
+		BIT Enable ZZZZZZZZZZKW_Motor_I0 : 2 (Description := "Enable / Disable (1 = Enable)");
+		BIT Run_Status ZZZZZZZZZZKW_Motor_I0 : 3 (Description := "Map the Run Status for the Motor Into this Point");
+		BIT HMI_Start ZZZZZZZZZZKW_Motor_I0 : 4 (Description := "HMI Start Command");
+		BIT HMI_Stop ZZZZZZZZZZKW_Motor_I0 : 5 (Description := "HMI Stop Command");
+		BIT HMI_Auto_CMD ZZZZZZZZZZKW_Motor_I0 : 6 (Description := "HMI Auto Command 1 = Auto");
+		BIT HMI_Manual_CMD ZZZZZZZZZZKW_Motor_I0 : 7 (Description := "HMI Auto/Manual Command");
+		SINT ZZZZZZZZZZKW_Motor_I9 (Hidden := 1);
+		BIT AM ZZZZZZZZZZKW_Motor_I9 : 0 (Description := "1: Auto$N0: Manual");
+		BIT Interlock ZZZZZZZZZZKW_Motor_I9 : 1 (Description := "Map all motor interlocks to this point");
+		BIT Permissive ZZZZZZZZZZKW_Motor_I9 : 2 (Description := "Map all motor permissive to this point");
+		BIT Reset ZZZZZZZZZZKW_Motor_I9 : 3 (Description := "Pump Reset Bit");
+		BIT Control ZZZZZZZZZZKW_Motor_I9 : 4 (Description := "Used as a storage bit for Complex Control (Start/Stop) Logic");
+		BIT DO_Output ZZZZZZZZZZKW_Motor_I9 : 5 (Description := "Containing bit for the Motor Output Prior to mapping to the Motor");
+		BIT TOAAuto ZZZZZZZZZZKW_Motor_I9 : 6 (Description := "Test / Off / Auto Switch is in the Auto Position");
+		BIT TOATest ZZZZZZZZZZKW_Motor_I9 : 7 (Description := "Test / Off / Auto Switch is in the Test Position");
+		REAL StartSP (Description := "Process Motor Start Setpoint");
+		REAL StopSP (Description := "Process Motor Stop Setpoint");
+		REAL PVMin (Description := "Process Motor Start / Stop Setpoint Minimum");
+		REAL PVMax (Description := "Process Motor Start / Stop Setpoint Maximum");
+		DUCO_DI_DATA FailedToRun (Description := "Failed to Run Alarm");
+		RUN_HOURS RunHours (Description := "Motor Run Hour Add On Instruction Data Type");
+	END_DATATYPE

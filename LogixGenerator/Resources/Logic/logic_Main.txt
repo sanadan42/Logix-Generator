@@ -1,0 +1,6 @@
+			ROUTINE a_Main 
+					N: NOP();
+					N: DUCO_ALARM_CTL_AOI(MASTER_ALARMS,ALARMS);
+					N: JSR(b_Program_Cfg,0);
+					N: JSR({0},0)JSR({1},0);
+			END_ROUTINE

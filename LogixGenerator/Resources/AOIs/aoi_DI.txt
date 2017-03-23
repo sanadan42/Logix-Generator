@@ -1,0 +1,44 @@
+	ADD_ON_INSTRUCTION_DEFINITION DUCO_DI_AOI (Description := "Duco Design$NDiscrete Input Instruction",
+	                                           Revision := "1.0",
+	                                           ExecutePrescan := No,
+	                                           ExecutePostscan := No,
+	                                           ExecuteEnableInFalse := No,
+	                                           CreatedDate := "2016-04-01T15:43:12.375Z",
+	                                           CreatedBy := "Mark Dodd",
+	                                           EditedDate := "2016-04-04T21:23:01.000Z",
+	                                           EditedBy := "Mark Dodd",
+	                                           SoftwareRevision := "v20.01")
+		
+		PARAMETERS
+			EnableIn : BOOL (Description := "Enable Input - System Defined Parameter",
+			                    Usage := Input,
+			                    RADIX := Decimal,
+			                    Required := No,
+			                    Visible := No,
+			                    ExternalAccess := Read Only);
+			EnableOut : BOOL (Description := "Enable Output - System Defined Parameter",
+			                     Usage := Output,
+			                     RADIX := Decimal,
+			                     Required := No,
+			                     Visible := No,
+			                     ExternalAccess := Read Only);
+			DI : DUCO_DI_DATA (Usage := InOut,
+			              Required := Yes,
+			              Visible := Yes);
+			ALARMS : DUCO_Alarm_Bits (Usage := InOut,
+			                  Required := Yes,
+			                  Visible := Yes);
+		END_PARAMETERS
+
+		LOCAL_TAGS
+			DI_ALARM : DUCO_Alarm_AOI (ExternalAccess := None,
+			                   DefaultData := "[1,[0,0,0]]");
+		END_LOCAL_TAGS
+
+		ROUTINE Logic 
+				N: NOP();
+				N: XIC(DI.Input)OTE(DI.Raw);
+				N: DUCO_Alarm_AOI(DI_ALARM,DI.Raw,DI.Alarm,ALARMS);
+		END_ROUTINE
+
+	END_ADD_ON_INSTRUCTION_DEFINITION

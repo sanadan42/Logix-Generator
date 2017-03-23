@@ -1,0 +1,42 @@
+	ADD_ON_INSTRUCTION_DEFINITION DUCO_ALARM_CTL_AOI (Revision := "1.0",
+	                                                  ExecutePrescan := No,
+	                                                  ExecutePostscan := No,
+	                                                  ExecuteEnableInFalse := No,
+	                                                  CreatedDate := "2016-04-04T21:48:00.640Z",
+	                                                  CreatedBy := "WATSONPLC\Maintenance",
+	                                                  EditedDate := "2016-04-04T21:54:28.859Z",
+	                                                  EditedBy := "WATSONPLC\Maintenance",
+	                                                  SoftwareRevision := "v20.01")
+		
+		PARAMETERS
+			EnableIn : BOOL (Description := "Enable Input - System Defined Parameter",
+			                    Usage := Input,
+			                    RADIX := Decimal,
+			                    Required := No,
+			                    Visible := No,
+			                    ExternalAccess := Read Only);
+			EnableOut : BOOL (Description := "Enable Output - System Defined Parameter",
+			                     Usage := Output,
+			                     RADIX := Decimal,
+			                     Required := No,
+			                     Visible := No,
+			                     ExternalAccess := Read Only);
+			ALARMS : DUCO_Alarm_Bits (Usage := InOut,
+			                  Required := Yes,
+			                  Visible := Yes);
+		END_PARAMETERS
+
+		LOCAL_TAGS
+		END_LOCAL_TAGS
+
+		ROUTINE Logic 
+				N: XIC(ALARMS.Scan_FO_Flag)OTL(ALARMS.FO_Flag);
+				N: OTU(ALARMS.Scan_FO_Flag);
+				N: [XIC(ALARMS.HMI_Global_Reset) ,XIC(ALARMS.Physical_Reset) ]OTE(ALARMS.Global_Reset);
+				N: [XIC(ALARMS.HMI_Reset) ,XIC(ALARMS.Global_Reset) ]OTE(ALARMS.Reset);
+				N: [XIC(ALARMS.HMI_Ack) ,XIC(ALARMS.Global_Reset) ,XIC(ALARMS.Reset) ]OTE(ALARMS.Ack);
+				N: XIC(ALARMS.Ack)OTU(ALARMS.FO_Flag);
+				N: OTU(ALARMS.HMI_Global_Reset)OTU(ALARMS.HMI_Reset)OTU(ALARMS.HMI_Ack);
+		END_ROUTINE
+
+	END_ADD_ON_INSTRUCTION_DEFINITION

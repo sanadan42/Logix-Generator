@@ -1,0 +1,7 @@
+	DATATYPE DUCO_LeadLag_SP (Description := "Lead Lag Setpoints",
+	                        FamilyType := NoFamily)
+		REAL LeadStart (Description := "Lead Start Setpoint");
+		REAL LeadStop (Description := "Lead Stop Setpoint");
+		REAL LagStart (Description := "Lag Start Setpoint");
+		REAL LagStop (Description := "Lag Stop Setpoint");
+	END_DATATYPE

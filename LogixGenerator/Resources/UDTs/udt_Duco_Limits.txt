@@ -1,0 +1,5 @@
+	DATATYPE DUCO_Limits (Description := "Duco Analog Floating Point Limits Data Structure",
+	                      FamilyType := NoFamily)
+		REAL Min (Description := "Minimum Value");
+		REAL Max (Description := "Maximum Value");
+	END_DATATYPE

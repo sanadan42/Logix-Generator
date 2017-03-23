@@ -1,0 +1,12 @@
+(*********************************************
+
+  Import-Export
+  Version   := RSLogix 5000 v20.01
+  Owner     := operator, 
+  Exported  := Thu Apr 07 09:08:29 2016
+
+  Note:  File encoded in UTF-8.  Only edit file in a program 
+         which supports UTF-8 (like Notepad, not Wordpad).
+
+**********************************************)
+IE_VER := 2.11;

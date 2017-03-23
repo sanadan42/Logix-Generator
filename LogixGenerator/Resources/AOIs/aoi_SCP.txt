@@ -1,0 +1,67 @@
+	ADD_ON_INSTRUCTION_DEFINITION
+
+	DUCO_SCP_AOI (Revision := "1.0",
+	                                            ExecutePrescan := No,
+	                                            ExecutePostscan := No,
+	                                            ExecuteEnableInFalse := No,
+	                                            CreatedDate := "2013-01-04T18:13:36.446Z",
+	                                            CreatedBy := "Mark Dodd",
+	                                            EditedDate := "2016-04-01T17:52:02.265Z",
+	                                            EditedBy := "Mark Dodd",
+	                                            SoftwareRevision := "v20.01")
+		
+		PARAMETERS
+			EnableIn : BOOL (Description := "Enable Input - System Defined Parameter",
+			                    Usage := Input,
+			                    RADIX := Decimal,
+			                    Required := No,
+			                    Visible := No,
+			                    ExternalAccess := Read Only);
+			EnableOut : BOOL (Description := "Enable Output - System Defined Parameter",
+			                     Usage := Output,
+			                     RADIX := Decimal,
+			                     Required := No,
+			                     Visible := No,
+			                     ExternalAccess := Read Only);
+			IN : REAL (Usage := Input,
+			              RADIX := Float,
+			              Required := Yes,
+			              Visible := Yes,
+			              DefaultData := 0.00000000e+000);
+			IN_Min : REAL (Usage := Input,
+			                  RADIX := Float,
+			                  Required := Yes,
+			                  Visible := Yes,
+			                  DefaultData := 0.00000000e+000);
+			IN_Max : REAL (Usage := Input,
+			                  RADIX := Float,
+			                  Required := Yes,
+			                  Visible := Yes,
+			                  DefaultData := 0.00000000e+000);
+			OUT_Min : REAL (Usage := Input,
+			                   RADIX := Float,
+			                   Required := Yes,
+			                   Visible := Yes,
+			                   DefaultData := 0.00000000e+000);
+			OUT_Max : REAL (Usage := Input,
+			                   RADIX := Float,
+			                   Required := Yes,
+			                   Visible := Yes,
+			                   DefaultData := 0.00000000e+000);
+			OUT : REAL (Usage := Output,
+			               RADIX := Float,
+			               Required := Yes,
+			               Visible := Yes,
+			               ExternalAccess := Read/Write,
+			               DefaultData := 0.00000000e+000);
+		END_PARAMETERS
+
+		LOCAL_TAGS
+		END_LOCAL_TAGS
+
+		ROUTINE Logic 
+				N: CMP((IN_Max-IN_Min)<>0.0)CPT(OUT,OUT_Min+(IN-IN_Min)*(OUT_Max-OUT_Min)/(IN_Max-IN_Min));
+				N: CMP((IN_Max-IN_Min)=0.0)CLR(OUT);
+		END_ROUTINE
+
+	END_ADD_ON_INSTRUCTION_DEFINITION

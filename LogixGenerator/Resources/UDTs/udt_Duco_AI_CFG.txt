@@ -1,0 +1,7 @@
+	DATATYPE DUCO_AI_CFG (Description := "Duco Design$NAnalog Input Configuration$NUser Define Data Type",
+	                      FamilyType := NoFamily)
+		DUCO_Limits PV (Description := "PV Engineering Units$N Min / Max");
+		DUCO_Limits Raw (Description := "Raw Input Min / Max");
+		DUCO_Limits Fail (Description := "Failure Setpoint Min/Max (mA)");
+		REAL Hysterisis (Description := "Alarm Hysterisis");
+	END_DATATYPE

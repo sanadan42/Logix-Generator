@@ -1,0 +1,60 @@
+	ADD_ON_INSTRUCTION_DEFINITION
+	
+	DUCO_Alarm_AOI (Revision := "1.0",
+	                                              ExecutePrescan := No,
+	                                              ExecutePostscan := No,
+	                                              ExecuteEnableInFalse := No,
+	                                              CreatedDate := "2016-03-31T17:03:22.203Z",
+	                                              CreatedBy := "Mark Dodd",
+	                                              EditedDate := "2016-04-04T22:01:02.734Z",
+	                                              EditedBy := "Mark Dodd",
+	                                              SoftwareRevision := "v20.01")
+		
+		PARAMETERS
+			EnableIn : BOOL (Description := "Enable Input - System Defined Parameter",
+			                    Usage := Input,
+			                    RADIX := Decimal,
+			                    Required := No,
+			                    Visible := No,
+			                    ExternalAccess := Read Only);
+			EnableOut : BOOL (Description := "Enable Output - System Defined Parameter",
+			                     Usage := Output,
+			                     RADIX := Decimal,
+			                     Required := No,
+			                     Visible := No,
+			                     ExternalAccess := Read Only);
+			In : BOOL (Description := "Raw Alarm inputer",
+			              Usage := Input,
+			              RADIX := Decimal,
+			              Required := Yes,
+			              Visible := Yes,
+			              DefaultData := 0);
+			Alarm : DUCO_ALM (Usage := InOut,
+			                 Required := Yes,
+			                 Visible := Yes);
+			Alarms : DUCO_Alarm_Bits (Usage := InOut,
+			                  Required := Yes,
+			                  Visible := Yes);
+		END_PARAMETERS
+
+		LOCAL_TAGS
+			Debounce : TIMER (ExternalAccess := None,
+			                   DefaultData := "[0,0,0]");
+			ons1 : BOOL (RADIX := Decimal,
+			               ExternalAccess := None,
+			               DefaultData := 0);
+			LA_Falling_Edge : BOOL (RADIX := Decimal,
+			                          ExternalAccess := None,
+			                          DefaultData := 0);
+		END_LOCAL_TAGS
+
+		ROUTINE Logic 
+				N: XIC(In)MOV(Alarm.Deb,Debounce.PRE)TOF(Debounce,?,?);
+				N: [XIC(Debounce.DN) ,XIO(Alarm.Enable) ,XIC(Alarm.Bypass) ,XIC(Alarm.Condition) ]OTE(Alarm.UnLatched)[XIC(Alarm.Latched) ,XIC(Alarms.Reset) ]OTE(Alarm.Latched);
+				N: XIO(Alarm.Latched)ONS(ons1)OTE(LA_Falling_Edge);
+				N: XIO(LA_Falling_Edge)[XIC(Alarm.UnAcked) ,XIC(Alarms.Ack) ]OTE(Alarm.UnAcked);
+				N: [XIC(Alarm.Unacked) ,XIC(Alarms.FO_Flag) ,XIO(Alarm.FO_Enable) ][XIC(Alarm.FO) ,XIC(Alarms.Ack) ]OTE(Alarm.FO);
+				N: XIO(Alarm.FO)XIO(Alarms.Scan_FO_Flag)OTE(Alarms.Scan_FO_Flag);
+		END_ROUTINE
+
+	END_ADD_ON_INSTRUCTION_DEFINITION
