@@ -8,6 +8,7 @@ namespace LogixGenerator
 {
     class AddOnInstructions
         // small edit so that i can do a push
+        // and another
     {
         private string cr = System.Environment.NewLine + System.Environment.NewLine;
 
