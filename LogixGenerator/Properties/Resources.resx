@@ -229,8 +229,8 @@
     <comment>{0} = Tag Name, {1} = Description</comment>
   </data>
   <data name="tagDI" xml:space="preserve">
-    <value>{0} : DUCO_DI_DATA (Description:= {2})  := [0,{1}];</value>
-    <comment>{0} = Tag Name, {1} = Alarm Configuration, {2} = Description</comment>
+    <value>{0} : DUCO_DI_DATA (Description:= {2})  := [0,[{1},{3},0.0]];</value>
+    <comment>{0} = Tag Name, {1} = Alarm Configuration, {2} = Description. {3} = Debounce</comment>
   </data>
   <data name="tagDIAOI" xml:space="preserve">
     <value>{0}_AOI : DUCO_DI_AOI (Description:= Add on instruction for {1});</value>

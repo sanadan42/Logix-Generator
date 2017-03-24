@@ -603,7 +603,7 @@ namespace LogixGenerator.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} : DUCO_DI_DATA (Description:= {2})  := [0,{1}];.
+        ///   Looks up a localized string similar to {0} : DUCO_DI_DATA (Description:= {2})  := [0,[{1},{3},0.0]];.
         /// </summary>
         internal static string tagDI {
             get {
