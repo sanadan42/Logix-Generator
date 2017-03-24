@@ -56,5 +56,10 @@ namespace LogixGenerator
         {
             get { return LogixGenerator.Properties.Resources.aoi_Run_Hours; }
         }
+
+        public string TimedBypass
+        {
+            get { return LogixGenerator.Properties.Resources.aoi_TimedBypass; }
+        }
     }
 }

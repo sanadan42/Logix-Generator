@@ -320,4 +320,7 @@
   <data name="hmiTriggersHeader" xml:space="preserve">
     <value>&lt;triggers&gt;</value>
   </data>
+  <data name="aoi_TimedBypass" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\aois\aoi_timedbypass.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
 </root>

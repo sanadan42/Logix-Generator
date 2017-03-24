@@ -106,13 +106,13 @@ namespace LogixGenerator.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 	ADD_ON_INSTRUCTION_DEFINITION DUCO_AI_AOI (Description := &quot;Analog Input Data Processing&quot;,
-        ///	                                           Revision := &quot;1.0&quot;,
-        ///	                                           ExecutePrescan := No,
-        ///	                                           ExecutePostscan := No,
-        ///	                                           ExecuteEnableInFalse := No,
-        ///	                                           CreatedDate := &quot;2016-03-30T20:32:15.687Z&quot;,
-        ///	                                           CreatedBy := &quot;Ma [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to ADD_ON_INSTRUCTION_DEFINITION DUCO_AI_Function (Description := &quot;Analog Input Data Processing&quot;,
+        ///	                                                Revision := &quot;1.0&quot;,
+        ///	                                                ExecutePrescan := No,
+        ///	                                                ExecutePostscan := No,
+        ///	                                                ExecuteEnableInFalse := No,
+        ///	                                                CreatedDate := &quot;2016-03-30T20:32:15.687Z&quot;,
+        ///	                               [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string aoi_AI {
             get {
@@ -121,15 +121,13 @@ namespace LogixGenerator.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 	ADD_ON_INSTRUCTION_DEFINITION
-        ///	
-        ///	DUCO_Alarm_AOI (Revision := &quot;1.0&quot;,
-        ///	                                              ExecutePrescan := No,
-        ///	                                              ExecutePostscan := No,
-        ///	                                              ExecuteEnableInFalse := No,
-        ///	                                              CreatedDate := &quot;2016-03-31T17:03:22.203Z&quot;,
-        ///	                                              CreatedBy := &quot;Mark Dodd&quot;,
-        ///	                                              EditedDate  [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to ADD_ON_INSTRUCTION_DEFINITION DUCO_Alarm_Function (Revision := &quot;1.0&quot;,
+        ///	                                                   ExecutePrescan := No,
+        ///	                                                   ExecutePostscan := No,
+        ///	                                                   ExecuteEnableInFalse := No,
+        ///	                                                   CreatedDate := &quot;2016-03-31T17:03:22.203Z&quot;,
+        ///	                                                   CreatedBy := &quot;Mark Dodd&quot;,
+        ///	                                  [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string aoi_Alarm {
             get {
@@ -138,13 +136,13 @@ namespace LogixGenerator.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 	ADD_ON_INSTRUCTION_DEFINITION DUCO_ALARM_CTL_AOI (Revision := &quot;1.0&quot;,
-        ///	                                                  ExecutePrescan := No,
-        ///	                                                  ExecutePostscan := No,
-        ///	                                                  ExecuteEnableInFalse := No,
-        ///	                                                  CreatedDate := &quot;2016-04-04T21:48:00.640Z&quot;,
-        ///	                                                  CreatedBy := &quot;WATSONPLC\Maintenance&quot;,
-        ///	                           [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to ADD_ON_INSTRUCTION_DEFINITION DUCO_ALARM_BITS_Function (Revision := &quot;1.0&quot;,
+        ///	                                                        ExecutePrescan := No,
+        ///	                                                        ExecutePostscan := No,
+        ///	                                                        ExecuteEnableInFalse := No,
+        ///	                                                        CreatedDate := &quot;2016-04-04T21:48:00.640Z&quot;,
+        ///	                                                        CreatedBy := &quot;Mark Dodd&quot;,
+        ///	    [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string aoi_Alarm_CTL {
             get {
@@ -153,13 +151,13 @@ namespace LogixGenerator.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 	ADD_ON_INSTRUCTION_DEFINITION DUCO_DI_AOI (Description := &quot;Duco Design$NDiscrete Input Instruction&quot;,
-        ///	                                           Revision := &quot;1.0&quot;,
-        ///	                                           ExecutePrescan := No,
-        ///	                                           ExecutePostscan := No,
-        ///	                                           ExecuteEnableInFalse := No,
-        ///	                                           CreatedDate := &quot;2016-04-01T15:43:12.375Z&quot;,
-        ///	                                           Creat [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to ADD_ON_INSTRUCTION_DEFINITION DUCO_DI_Function (Description := &quot;Duco Design$NDiscrete Input Instruction&quot;,
+        ///	                                                Revision := &quot;1.0&quot;,
+        ///	                                                ExecutePrescan := No,
+        ///	                                                ExecutePostscan := No,
+        ///	                                                ExecuteEnableInFalse := No,
+        ///	                                                CreatedDate := &quot;2016-04-01T15:43:12.375Z&quot;,
+        ///	                    [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string aoi_DI {
             get {
@@ -183,13 +181,12 @@ namespace LogixGenerator.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 	ADD_ON_INSTRUCTION_DEFINITION Duco_High_Low_Select (Revision := &quot;1.0&quot;,
-        ///	                                                  ExecutePrescan := No,
-        ///	                                                  ExecutePostscan := No,
-        ///	                                                  ExecuteEnableInFalse := No,
-        ///	                                                  CreatedDate := &quot;2012-10-01T22:54:42.578Z&quot;,
-        ///	                                                  CreatedBy := &quot;Mark Dodd&quot;,
-        ///	                                     [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to ADD_ON_INSTRUCTION_DEFINITION DUCO_High_Low_Select_Control (Revision := &quot;1.0&quot;,
+        ///	                                                            ExecutePrescan := No,
+        ///	                                                            ExecutePostscan := No,
+        ///	                                                            ExecuteEnableInFalse := No,
+        ///	                                                            CreatedDate := &quot;2017-02-05T20:14:49.587Z&quot;,
+        ///	                                                            Created [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string aoi_High_Low_Select {
             get {
@@ -198,14 +195,13 @@ namespace LogixGenerator.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 	ADD_ON_INSTRUCTION_DEFINITION RUN_HOURS (Revision := &quot;1.0&quot;,
-        ///	                                         ExecutePrescan := No,
-        ///	                                         ExecutePostscan := No,
-        ///	                                         ExecuteEnableInFalse := No,
-        ///	                                         CreatedDate := &quot;2012-03-09T10:12:44.142Z&quot;,
-        ///	                                         CreatedBy := &quot;Mark Dodd&quot;,
-        ///	                                         EditedDate := &quot;2013-03-19T20:02:06.221Z&quot;,
-        ///	        [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to 	ADD_ON_INSTRUCTION_DEFINITION DUCO_RUN_HOURS (Revision := &quot;1.0&quot;,
+        ///	                                              ExecutePrescan := No,
+        ///	                                              ExecutePostscan := No,
+        ///	                                              ExecuteEnableInFalse := No,
+        ///	                                              CreatedDate := &quot;2012-03-09T10:12:44.142Z&quot;,
+        ///	                                              CreatedBy := &quot;Mark Dodd&quot;,
+        ///	                                              EditedDate := &quot;2 [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string aoi_Run_Hours {
             get {
@@ -216,17 +212,32 @@ namespace LogixGenerator.Properties {
         /// <summary>
         ///   Looks up a localized string similar to 	ADD_ON_INSTRUCTION_DEFINITION
         ///
-        ///	DUCO_SCP_AOI (Revision := &quot;1.0&quot;,
+        ///	DUCO_SCP (Revision := &quot;1.0&quot;,
         ///	                                            ExecutePrescan := No,
         ///	                                            ExecutePostscan := No,
         ///	                                            ExecuteEnableInFalse := No,
         ///	                                            CreatedDate := &quot;2013-01-04T18:13:36.446Z&quot;,
         ///	                                            CreatedBy := &quot;Mark Dodd&quot;,
-        ///	                                            EditedDate := &quot;2016-04-01T [rest of string was truncated]&quot;;.
+        ///	                                            EditedDate := &quot;2016-04-01T17:5 [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string aoi_SCP {
             get {
                 return ResourceManager.GetString("aoi_SCP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ADD_ON_INSTRUCTION_DEFINITION DUCO_Timed_Bypass (Description := &quot;Timed Bypass Logic&quot;,
+        ///	                                                 Revision := &quot;1.0&quot;,
+        ///	                                                 ExecutePrescan := No,
+        ///	                                                 ExecutePostscan := No,
+        ///	                                                 ExecuteEnableInFalse := No,
+        ///	                                                 CreatedDate := &quot;2007-04-12T23:12:03.883Z&quot;,
+        ///	                                   [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string aoi_TimedBypass {
+            get {
+                return ResourceManager.GetString("aoi_TimedBypass", resourceCulture);
             }
         }
         

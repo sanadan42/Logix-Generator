@@ -1,0 +1,53 @@
+﻿ADD_ON_INSTRUCTION_DEFINITION DUCO_Timed_Bypass (Description := "Timed Bypass Logic",
+	                                                 Revision := "1.0",
+	                                                 ExecutePrescan := No,
+	                                                 ExecutePostscan := No,
+	                                                 ExecuteEnableInFalse := No,
+	                                                 CreatedDate := "2007-04-12T23:12:03.883Z",
+	                                                 CreatedBy := "Mark Dodd",
+	                                                 EditedDate := "2017-02-03T19:29:13.481Z",
+	                                                 EditedBy := "Mark Dodd",
+	                                                 SoftwareRevision := "v20.04",
+	                                                 AdditionalHelpText := "This function performs all logic necessary for a timed bypass.$N- Main purpose is to bypass analog inputs for maintenance purposes but can be used for anything$N- Smallest time unit available is minutes$N- creates a 10 minute warning alarm$N- calculates the remaining time in minutes and hours")
+		
+		PARAMETERS
+			EnableIn : BOOL (Description := "Enable Input - System Defined Parameter",
+			                    Usage := Input,
+			                    RADIX := Decimal,
+			                    Required := No,
+			                    Visible := No,
+			                    ExternalAccess := Read Only);
+			EnableOut : BOOL (Description := "Enable Output - System Defined Parameter",
+			                     Usage := Output,
+			                     RADIX := Decimal,
+			                     Required := No,
+			                     Visible := No,
+			                     ExternalAccess := Read Only);
+			Bypass : Duco_Bypass (Usage := InOut,
+			                  Required := Yes,
+			                  Visible := Yes);
+			mb_Alarm_Reset : BOOL (Usage := Input,
+			                          RADIX := Decimal,
+			                          Required := Yes,
+			                          Visible := Yes,
+			                          DefaultData := 0);
+		END_PARAMETERS
+
+		LOCAL_TAGS
+		END_LOCAL_TAGS
+
+		ROUTINE Logic 
+				RC: "// *********************$N"
+				    "//            SP Limiting$N"
+				    "// *********************";
+				N: GRT(Bypass.SP,Bypass.SP_Max)MOV(Bypass.SP_Max,Bypass.SP);
+				N: LES(Bypass.SP,Bypass.SP_Min)MOV(Bypass.SP_Min,Bypass.SP);
+				N: MOV(60000,Bypass.TMR.PRE)XIC(Bypass.CMD)TON(Bypass.TMR,0,0);
+				N: XIC(Bypass.TMR.DN)ADD(Bypass.Acc,1,Bypass.Acc)RES(Bypass.TMR);
+				N: GEQ(Bypass.Acc,Bypass.SP)OTU(Bypass.CMD);
+				N: [XIC(Bypass.RST) ,XIO(Bypass.CMD) ]RES(Bypass.TMR)OTU(Bypass.RST)CLR(Bypass.Acc);
+				N: CPT(Bypass.HR_Remain,(Bypass.SP - Bypass.Acc - 1)/60)CPT(Bypass.MIN_Remain,(Bypass.SP - Bypass.Acc - 1)MOD 60)CPT(Bypass.SEC_Remain,(Bypass.TMR.PRE-Bypass.TMR.ACC) / 1000);
+				N: [GRT(Bypass.MIN_Remain,10) ,GRT(Bypass.HR_Remain,0) ,XIO(Bypass.CMD) ][XIC(Bypass.Warning) ,XIC(mb_Alarm_Reset) ]OTE(Bypass.Warning);
+		END_ROUTINE
+
+	END_ADD_ON_INSTRUCTION_DEFINITION
