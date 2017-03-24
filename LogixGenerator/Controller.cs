@@ -240,9 +240,9 @@ namespace LogixGenerator
         private string GeneralTags()
         {
             string generalTags;
-            generalTags = TAB + TAB + "ALARMS : DUCO_Alarm_Bits := [0,0];" + System.Environment.NewLine;
-            generalTags += TAB + TAB + "MASTER_ALARMS : DUCO_ALARM_CTL_AOI := [3];" + System.Environment.NewLine;
-            generalTags += TAB + TAB + "udt_Clock : Duco_Clock := [0,0,0,0,0,0,0,0];" + System.Environment.NewLine;
+            generalTags = TAB + TAB + "ALARMS : " + AddOnInstructions.ALARM_BITS_TYPE_NAME + " := [0,0];" + System.Environment.NewLine;
+            generalTags += TAB + TAB + "MASTER_ALARMS : " + AddOnInstructions.ALARM_CTL_FUNCTION_NAME + " := [3];" + System.Environment.NewLine;
+            generalTags += TAB + TAB + "udt_Clock : " + AddOnInstructions.DUCO_CLOCK + " := [0,0,0,0,0,0,0,0];" + System.Environment.NewLine;
 
             return generalTags;
         }

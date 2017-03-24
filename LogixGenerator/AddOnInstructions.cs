@@ -11,10 +11,13 @@ namespace LogixGenerator
         // and another
     {
         private string cr = System.Environment.NewLine + System.Environment.NewLine;
+        public const string ALARM_BITS_TYPE_NAME = "Duco_Alarm_Bits";
+        public const string ALARM_CTL_FUNCTION_NAME = "DUCO_ALARM_BITS_Function";
+        public const string DUCO_CLOCK = "Duco_Clock";
 
         public string AddOnInstructionDefs
         {
-            get { return SCPAOI + cr + AlarmAOI + cr + AIAOI + cr + DIAOI + cr + AlarmCTL + cr + HighLowSelect + cr + SPRamp + cr + RunHours; }
+            get { return SCPAOI + cr + TimedBypass + cr + AlarmAOI + cr + AIAOI + cr + DIAOI + cr + AlarmCTL + cr + HighLowSelect + cr + SPRamp + cr + RunHours; }
         }
 
         public string AIAOI
