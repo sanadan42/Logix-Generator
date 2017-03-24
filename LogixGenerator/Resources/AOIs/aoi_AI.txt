@@ -6,7 +6,7 @@ ADD_ON_INSTRUCTION_DEFINITION DUCO_AI_Function (Description := "Analog Input Dat
 	                                                CreatedDate := "2016-03-30T20:32:15.687Z",
 	                                                CreatedBy := "Mark Dodd",
 	                                                EditedDate := "2017-02-04T21:44:00.191Z",
-	                                                EditedBy := "WIN-PPVKF9AK0BU\Duco",
+	                                                EditedBy := "Mark Dodd",
 	                                                SoftwareRevision := "v20.04")
 		
 		PARAMETERS

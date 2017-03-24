@@ -1,12 +1,12 @@
-	ADD_ON_INSTRUCTION_DEFINITION DUCO_ALARM_CTL_AOI (Revision := "1.0",
-	                                                  ExecutePrescan := No,
-	                                                  ExecutePostscan := No,
-	                                                  ExecuteEnableInFalse := No,
-	                                                  CreatedDate := "2016-04-04T21:48:00.640Z",
-	                                                  CreatedBy := "WATSONPLC\Maintenance",
-	                                                  EditedDate := "2016-04-04T21:54:28.859Z",
-	                                                  EditedBy := "WATSONPLC\Maintenance",
-	                                                  SoftwareRevision := "v20.01")
+ADD_ON_INSTRUCTION_DEFINITION DUCO_ALARM_BITS_Function (Revision := "1.0",
+	                                                        ExecutePrescan := No,
+	                                                        ExecutePostscan := No,
+	                                                        ExecuteEnableInFalse := No,
+	                                                        CreatedDate := "2016-04-04T21:48:00.640Z",
+	                                                        CreatedBy := "Mark Dodd",
+	                                                        EditedDate := "2017-02-02T16:52:55.227Z",
+	                                                        EditedBy := "Mark Dodd",
+	                                                        SoftwareRevision := "v20.04")
 		
 		PARAMETERS
 			EnableIn : BOOL (Description := "Enable Input - System Defined Parameter",

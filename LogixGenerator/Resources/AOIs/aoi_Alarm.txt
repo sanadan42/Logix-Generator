@@ -5,7 +5,7 @@ ADD_ON_INSTRUCTION_DEFINITION DUCO_Alarm_Function (Revision := "1.0",
 	                                                   CreatedDate := "2016-03-31T17:03:22.203Z",
 	                                                   CreatedBy := "Mark Dodd",
 	                                                   EditedDate := "2017-02-03T19:29:13.481Z",
-	                                                   EditedBy := "WIN-PPVKF9AK0BU\Duco",
+	                                                   EditedBy := "Mark Dodd",
 	                                                   SoftwareRevision := "v20.04")
 		
 		PARAMETERS
