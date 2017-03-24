@@ -1,12 +1,12 @@
-	ADD_ON_INSTRUCTION_DEFINITION RUN_HOURS (Revision := "1.0",
-	                                         ExecutePrescan := No,
-	                                         ExecutePostscan := No,
-	                                         ExecuteEnableInFalse := No,
-	                                         CreatedDate := "2012-03-09T10:12:44.142Z",
-	                                         CreatedBy := "Mark Dodd",
-	                                         EditedDate := "2013-03-19T20:02:06.221Z",
-	                                         EditedBy := "Mark Dodd",
-	                                         SoftwareRevision := "v20.00")
+	ADD_ON_INSTRUCTION_DEFINITION DUCO_RUN_HOURS (Revision := "1.0",
+	                                              ExecutePrescan := No,
+	                                              ExecutePostscan := No,
+	                                              ExecuteEnableInFalse := No,
+	                                              CreatedDate := "2012-03-09T10:12:44.142Z",
+	                                              CreatedBy := "Mark Dodd",
+	                                              EditedDate := "2017-02-21T00:08:53.618Z",
+	                                              EditedBy := "WIN-PPVKF9AK0BU\Duco",
+	                                              SoftwareRevision := "v20.04")
 		
 		PARAMETERS
 			EnableIn : BOOL (Description := "Enable Input - System Defined Parameter",
@@ -99,14 +99,12 @@
 		END_LOCAL_TAGS
 
 		ROUTINE Logic 
-				N: XIC(S:FS)OTL(Reset);
 				N: MOV(3600000,tmr_Run_Hour.PRE);
 				N: XIC(Run)RTO(tmr_Run_Hour,?,?);
 				N: XIC(tmr_Run_Hour.DN)[ADD(1,ResettableHoursAcc,ResettableHoursAcc) ,GEQ(MaintenanceSP,ResettableHoursAcc) SUB(MaintenanceSP,ResettableHoursAcc,HoursTillMaintenance) ]RES(tmr_Run_Hour);
 				N: DIV(tmr_Run_Hour.ACC,60000,ResettableMinutesAcc);
 				N: XIC(Reset)CLR(ResettableHoursAcc)CLR(ResettableMinutesAcc)RES(tmr_Run_Hour)OTU(Reset);
 				N: LEQ(ResettableHoursAcc,0)OTE(MaintenanceRequired);
-				N: XIC(S:FS)OTL(TotalHoursReset);
 				N: MOV(3600000,tmr_Total_Run_Hour.PRE);
 				N: XIC(Run)RTO(tmr_Total_Run_Hour,?,?);
 				N: XIC(tmr_Total_Run_Hour.DN)ADD(1,TotalRunHoursAcc,TotalRunHoursAcc)RES(tmr_Total_Run_Hour);
