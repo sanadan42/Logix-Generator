@@ -1,12 +1,69 @@
-	ADD_ON_INSTRUCTION_DEFINITION Duco_High_Low_Select (Revision := "1.0",
-	                                                  ExecutePrescan := No,
-	                                                  ExecutePostscan := No,
-	                                                  ExecuteEnableInFalse := No,
-	                                                  CreatedDate := "2012-10-01T22:54:42.578Z",
-	                                                  CreatedBy := "Mark Dodd",
-	                                                  EditedDate := "2013-03-19T20:02:04.404Z",
-	                                                  EditedBy := "Mark Dodd",
-	                                                  SoftwareRevision := "v20.00")
+ADD_ON_INSTRUCTION_DEFINITION DUCO_High_Low_Select_Control (Revision := "1.0",
+	                                                            ExecutePrescan := No,
+	                                                            ExecutePostscan := No,
+	                                                            ExecuteEnableInFalse := No,
+	                                                            CreatedDate := "2017-02-05T20:14:49.587Z",
+	                                                            CreatedBy := "WIN-PPVKF9AK0BU\Duco",
+	                                                            EditedDate := "2017-02-20T20:59:48.285Z",
+	                                                            EditedBy := "WIN-PPVKF9AK0BU\Duco",
+	                                                            SoftwareRevision := "v20.04")
+		
+		PARAMETERS
+			EnableIn : BOOL (Description := "Enable Input - System Defined Parameter",
+			                    Usage := Input,
+			                    RADIX := Decimal,
+			                    Required := No,
+			                    Visible := No,
+			                    ExternalAccess := Read Only);
+			EnableOut : BOOL (Description := "Enable Output - System Defined Parameter",
+			                     Usage := Output,
+			                     RADIX := Decimal,
+			                     Required := No,
+			                     Visible := No,
+			                     ExternalAccess := Read Only);
+			Control : DUCO_HighLowSelectControl (Usage := InOut,
+			                   Required := Yes,
+			                   Visible := Yes);
+			Selector : DINT (Usage := Output,
+			                    RADIX := Decimal,
+			                    Required := Yes,
+			                    Visible := Yes,
+			                    ExternalAccess := Read/Write,
+			                    DefaultData := 0);
+		END_PARAMETERS
+
+		LOCAL_TAGS
+			tmr_HandMaxTime : TIMER (ExternalAccess := None,
+			                          DefaultData := "[0,3600000,0]");
+		END_LOCAL_TAGS
+
+		ROUTINE Logic 
+				N: XIC(Control.SetAuto)OTU(Control.SetAuto)MOV(0,Control.Selector);
+				N: XIC(Control.SetIn1Active)OTU(Control.SetIn1Active)MOV(1,Control.Selector);
+				N: XIC(Control.SetIn2Active)OTU(Control.SetIn2Active)MOV(2,Control.Selector);
+				N: XIC(Control.SetIn3Active)OTU(Control.SetIn3Active)MOV(3,Control.Selector);
+				N: XIC(Control.SetIn4Active)OTU(Control.SetIn4Active)MOV(4,Control.Selector);
+				N: XIC(Control.SetHand)OTU(Control.SetHand)MOV(5,Control.Selector);
+				RC: "// ****************************************$N"
+				    "// If the loop has been in hand (manual) control for one hour, reset it back to low select control$N"
+				    "// ****************************************";
+				N: EQU(Control.Selector,5)MOV(3600000,tmr_HandMaxTime.PRE)TON(tmr_HandMaxTime,?,?);
+				N: XIC(tmr_HandMaxTime.DN)OTL(Control.SetAuto);
+				RC: "After the logic has decided what is selected then map that to the output for the low select logic to use.";
+				N: MOV(Control.Selector,Selector);
+		END_ROUTINE
+
+	END_ADD_ON_INSTRUCTION_DEFINITION
+
+	ADD_ON_INSTRUCTION_DEFINITION DUCO_High_Low_Select (Revision := "1.0",
+	                                                    ExecutePrescan := No,
+	                                                    ExecutePostscan := No,
+	                                                    ExecuteEnableInFalse := No,
+	                                                    CreatedDate := "2012-10-01T22:54:42.578Z",
+	                                                    CreatedBy := "Mark Dodd",
+	                                                    EditedDate := "2017-02-05T21:01:34.780Z",
+	                                                    EditedBy := "WIN-PPVKF9AK0BU\Duco",
+	                                                    SoftwareRevision := "v20.04")
 		
 		PARAMETERS
 			EnableIn : BOOL (Description := "Enable Input - System Defined Parameter",
@@ -79,361 +136,418 @@
 			                   Visible := Yes,
 			                   ExternalAccess := Read/Write,
 			                   DefaultData := 0);
+			SetAuto : BOOL (Usage := Input,
+			                   RADIX := Decimal,
+			                   Required := No,
+			                   Visible := No,
+			                   DefaultData := 0);
+			SetIn1Active : BOOL (Usage := Input,
+			                        RADIX := Decimal,
+			                        Required := No,
+			                        Visible := No,
+			                        DefaultData := 0);
+			SetIn2Active : BOOL (Usage := Input,
+			                        RADIX := Decimal,
+			                        Required := No,
+			                        Visible := No,
+			                        DefaultData := 0);
+			SetIn3Active : BOOL (Usage := Input,
+			                        RADIX := Decimal,
+			                        Required := No,
+			                        Visible := No,
+			                        DefaultData := 0);
+			SetIn4Active : BOOL (Usage := Input,
+			                        RADIX := Decimal,
+			                        Required := No,
+			                        Visible := No,
+			                        DefaultData := 0);
+			SetHand : BOOL (Usage := Input,
+			                   RADIX := Decimal,
+			                   Required := No,
+			                   Visible := No,
+			                   DefaultData := 0);
+			Control : DUCO_HighLowSelectControl (Usage := InOut,
+			                   Required := Yes,
+			                   Visible := Yes);
 		END_PARAMETERS
 
 		LOCAL_TAGS
-			HLL_02 : HL_LIMIT (ExternalAccess := None,
-			                 DefaultData := "[1,1.00000000e+002,1.00000000e+002,0.00000000e+000,0,3,1.00000000e+002,0,5.60519386e-045]");
-			EQU_02 : FBD_COMPARE (ExternalAccess := None,
-			                 DefaultData := "[3,3.00000000e+000,0.00000000e+000]");
+			LES_01 : FBD_COMPARE (ExternalAccess := None,
+			                 DefaultData := "[1,0.00000000e+000,0.00000000e+000]");
 			NEQ_01 : FBD_COMPARE (ExternalAccess := None,
 			                 DefaultData := "[3,0.00000000e+000,0.00000000e+000]");
 			ESEL_01 : SELECT_ENHANCED (ExternalAccess := None,
 			                  DefaultData := "[129,1.00000000e+002,1.00000000e+002,1.00000000e+002,0.00000000e+000,0.00000000e+000,0.00000000e+000,2,2,0,1,3,1.00000000e+002,1,0,0.00000000e+000]");
-			LES_01 : FBD_COMPARE (ExternalAccess := None,
-			                 DefaultData := "[1,0.00000000e+000,0.00000000e+000]");
 			LES_02 : FBD_COMPARE (ExternalAccess := None,
 			                 DefaultData := "[1,0.00000000e+000,0.00000000e+000]");
+			HLL_02 : HL_LIMIT (ExternalAccess := None,
+			                 DefaultData := "[1,1.00000000e+002,1.00000000e+002,0.00000000e+000,0,3,1.00000000e+002,0,5.60519386e-045]");
+			EQU_02 : FBD_COMPARE (ExternalAccess := None,
+			                 DefaultData := "[3,3.00000000e+000,0.00000000e+000]");
+			DUCO_High_Low_Select_Control_01 : DUCO_High_Low_Select_Control (ExternalAccess := None,
+			                                          DefaultData := "[1,0,[0,3600000,0]]");
+			SEL_01 : SELECT (ExternalAccess := None,
+			                 DefaultData := "[1,0.00000000e+000,0.00000000e+000,0,0.00000000e+000,5.60519386e-045]");
 		END_LOCAL_TAGS
 
 		FBD_ROUTINE Logic (SheetSize := "E - 34 x 44 in",
 		                   SheetOrientation := Landscape)
 			SHEET  (Name := "")
 				IREF  (ID := 0,
-				       X := 100,
-				       Y := 440,
+				       X := 340,
+				       Y := 600,
 				       Operand := "0",
 				       HideDescription := No)
 				END_IREF
 
 				IREF  (ID := 1,
-				       X := 1300,
-				       Y := 140,
+				       X := 800,
+				       Y := 600,
 				       Operand := "0",
 				       HideDescription := No)
 				END_IREF
 
 				IREF  (ID := 2,
-				       X := 1300,
-				       Y := 120,
-				       Operand := "100",
+				       X := 1160,
+				       Y := 560,
+				       Operand := "0",
 				       HideDescription := No)
 				END_IREF
 
 				IREF  (ID := 3,
-				       X := 660,
-				       Y := 500,
-				       Operand := "3",
+				       X := 1540,
+				       Y := 300,
+				       Operand := "0",
 				       HideDescription := No)
 				END_IREF
 
 				IREF  (ID := 4,
-				       X := 660,
-				       Y := 620,
-				       Operand := "4",
+				       X := 1160,
+				       Y := 540,
+				       Operand := "1",
 				       HideDescription := No)
 				END_IREF
 
 				IREF  (ID := 5,
-				       X := 120,
-				       Y := 140,
-				       Operand := "5",
+				       X := 1540,
+				       Y := 280,
+				       Operand := "100",
 				       HideDescription := No)
 				END_IREF
 
 				IREF  (ID := 6,
-				       X := 880,
-				       Y := 180,
-				       Operand := "CV1",
+				       X := 900,
+				       Y := 840,
+				       Operand := "3",
 				       HideDescription := No)
 				END_IREF
 
 				IREF  (ID := 7,
-				       X := 880,
-				       Y := 200,
-				       Operand := "CV2",
+				       X := 900,
+				       Y := 960,
+				       Operand := "4",
 				       HideDescription := No)
 				END_IREF
 
 				IREF  (ID := 8,
-				       X := 880,
-				       Y := 220,
-				       Operand := "CV3",
+				       X := 360,
+				       Y := 300,
+				       Operand := "5",
 				       HideDescription := No)
 				END_IREF
 
 				IREF  (ID := 9,
-				       X := 880,
-				       Y := 240,
-				       Operand := "CV4",
+				       X := 1120,
+				       Y := 340,
+				       Operand := "CV1",
 				       HideDescription := No)
 				END_IREF
 
 				IREF  (ID := 10,
-				       X := 880,
-				       Y := 260,
-				       Operand := "Hand",
+				       X := 1120,
+				       Y := 360,
+				       Operand := "CV2",
 				       HideDescription := No)
 				END_IREF
 
 				IREF  (ID := 11,
-				       X := 420,
-				       Y := 480,
-				       Operand := "InputsUsed",
+				       X := 1120,
+				       Y := 380,
+				       Operand := "CV3",
 				       HideDescription := No)
 				END_IREF
 
 				IREF  (ID := 12,
-				       X := 80,
-				       Y := 380,
-				       Operand := "Selector",
+				       X := 1120,
+				       Y := 400,
+				       Operand := "CV4",
 				       HideDescription := No)
 				END_IREF
 
 				IREF  (ID := 13,
-				       X := 420,
-				       Y := 260,
-				       Operand := "Selector",
+				       X := 1120,
+				       Y := 420,
+				       Operand := "Hand",
 				       HideDescription := No)
 				END_IREF
 
 				IREF  (ID := 14,
-				       X := 860,
-				       Y := 340,
+				       X := 660,
+				       Y := 820,
+				       Operand := "InputsUsed",
+				       HideDescription := No)
+				END_IREF
+
+				IREF  (ID := 15,
+				       X := 800,
+				       Y := 580,
 				       Operand := "SelectorMode",
 				       HideDescription := No)
 				END_IREF
 
-				OREF  (ID := 15,
-				       X := 1260,
-				       Y := 220,
+				OREF  (ID := 16,
+				       X := 1510,
+				       Y := 380,
 				       Operand := "Hand",
 				       HideDescription := No)
 				END_OREF
 
-				OREF  (ID := 16,
-				       X := 440,
-				       Y := 140,
+				OREF  (ID := 17,
+				       X := 680,
+				       Y := 300,
 				       Operand := "InitReq",
 				       HideDescription := No)
 				END_OREF
 
-				OREF  (ID := 17,
-				       X := 1780,
-				       Y := 80,
+				OREF  (ID := 18,
+				       X := 2020,
+				       Y := 240,
 				       Operand := "Out",
 				       HideDescription := No)
 				END_OREF
 
-				OREF  (ID := 18,
-				       X := 1380,
-				       Y := 280,
+				OREF  (ID := 19,
+				       X := 1630,
+				       Y := 440,
 				       Operand := "Selected",
 				       HideDescription := No)
 				END_OREF
 
-				ICON  (ID := 19,
-				       X := 660,
-				       Y := 300,
-				       Name := "NumInputs")
-				END_ICON
-
 				ICON  (ID := 20,
-				       X := 680,
+				       X := 900,
 				       Y := 460,
 				       Name := "NumInputs")
 				END_ICON
 
 				ICON  (ID := 21,
-				       X := 680,
-				       Y := 580,
+				       X := 920,
+				       Y := 800,
 				       Name := "NumInputs")
 				END_ICON
 
 				ICON  (ID := 22,
-				       X := 620,
-				       Y := 220,
-				       Name := "TurnOff3")
+				       X := 920,
+				       Y := 920,
+				       Name := "NumInputs")
 				END_ICON
 
 				ICON  (ID := 23,
-				       X := 640,
-				       Y := 260,
+				       X := 860,
+				       Y := 380,
+				       Name := "TurnOff3")
+				END_ICON
+
+				ICON  (ID := 24,
+				       X := 880,
+				       Y := 420,
 				       Name := "TurnOff4")
 				END_ICON
 
-				OCON  (ID := 24,
-				       X := 480,
-				       Y := 480,
+				OCON  (ID := 25,
+				       X := 730,
+				       Y := 820,
 				       Name := "NumInputs")
 				END_OCON
 
-				OCON  (ID := 25,
-				       X := 980,
-				       Y := 460,
+				OCON  (ID := 26,
+				       X := 1230,
+				       Y := 800,
 				       Name := "TurnOff3")
 				END_OCON
 
-				OCON  (ID := 26,
-				       X := 990,
-				       Y := 580,
+				OCON  (ID := 27,
+				       X := 1250,
+				       Y := 920,
 				       Name := "TurnOff4")
 				END_OCON
 
-				EQU_BLOCK  (ID := 27,
-				            X := 200,
-				            Y := 80,
+				EQU_BLOCK  (ID := 28,
+				            X := 440,
+				            Y := 240,
 				            Operand := "EQU_02",
 				            VisiblePins := "SourceA, SourceB, Dest",
 				            HideDescription := No)
 				END_EQU_BLOCK
 
-				ESEL_BLOCK  (ID := 28,
-				             X := 960,
-				             Y := 120,
+				ESEL_BLOCK  (ID := 29,
+				             X := 1200,
+				             Y := 280,
 				             Operand := "ESEL_01",
-				             VisiblePins := "In1, In2, In3, In4, In5, In3Fault, In4Fault, InsUsed, SelectorMode, ProgSelector, ProgOverrideReq, Out, SelectedIn, Override, InstructFault",
+				             VisiblePins := "In1, In2, In3, In4, In5, In3Fault, In4Fault, InsUsed, SelectorMode, ProgSelector, ProgProgReq, ProgOverrideReq, Out, SelectedIn, Override, InstructFault",
 				             HideDescription := No)
 				END_ESEL_BLOCK
 
-				HLL_BLOCK  (ID := 29,
-				            X := 1380,
-				            Y := 40,
+				HLL_BLOCK  (ID := 30,
+				            X := 1620,
+				            Y := 200,
 				            Operand := "HLL_02",
 				            VisiblePins := "In, HighLimit, LowLimit, Out",
 				            HideDescription := No)
 				END_HLL_BLOCK
 
-				LES_BLOCK  (ID := 30,
-				            X := 780,
-				            Y := 400,
+				LES_BLOCK  (ID := 31,
+				            X := 1020,
+				            Y := 740,
 				            Operand := "LES_01",
 				            VisiblePins := "SourceA, SourceB, Dest",
 				            HideDescription := No)
 				END_LES_BLOCK
 
-				LES_BLOCK  (ID := 31,
-				            X := 780,
-				            Y := 520,
+				LES_BLOCK  (ID := 32,
+				            X := 1020,
+				            Y := 860,
 				            Operand := "LES_02",
 				            VisiblePins := "SourceA, SourceB, Dest",
 				            HideDescription := No)
 				END_LES_BLOCK
 
-				NEQ_BLOCK  (ID := 32,
-				            X := 280,
-				            Y := 320,
+				NEQ_BLOCK  (ID := 33,
+				            X := 520,
+				            Y := 480,
 				            Operand := "NEQ_01",
 				            VisiblePins := "SourceA, SourceB, Dest",
 				            HideDescription := No)
 				END_NEQ_BLOCK
 
+				SEL_BLOCK  (ID := 34,
+				            X := 880,
+				            Y := 520,
+				            Operand := "SEL_01",
+				            VisiblePins := "In1, In2, SelectorIn, Out",
+				            HideDescription := No)
+				END_SEL_BLOCK
+
+				ADD_ON_INSTRUCTION DUCO_High_Low_Select_Control (ID := 35,
+				                                                 X := 160,
+				                                                 Y := 380,
+				                                                 Operand := "DUCO_High_Low_Select_Control_01",
+				                                                 VisiblePins := "Control, Selector",
+				                                                 HideDescription := "No")
+					FBD_PARAMETERS  (Control := Control)
+					END_FBD_PARAMETERS
+
+				END_ADD_ON_INSTRUCTION
+
 				WIRE  (FromElementID := 0,
 				       FromParameter := "",
-				       ToElementID := 32,
+				       ToElementID := 33,
 				       ToParameter := "SourceB")
 				END_WIRE
 
 				WIRE  (FromElementID := 1,
 				       FromParameter := "",
-				       ToElementID := 29,
-				       ToParameter := "LowLimit")
+				       ToElementID := 34,
+				       ToParameter := "In2")
 				END_WIRE
 
 				WIRE  (FromElementID := 2,
 				       FromParameter := "",
 				       ToElementID := 29,
-				       ToParameter := "HighLimit")
+				       ToParameter := "ProgOverrideReq")
 				END_WIRE
 
 				WIRE  (FromElementID := 3,
 				       FromParameter := "",
 				       ToElementID := 30,
-				       ToParameter := "SourceB")
+				       ToParameter := "LowLimit")
 				END_WIRE
 
 				WIRE  (FromElementID := 4,
+				       FromParameter := "",
+				       ToElementID := 29,
+				       ToParameter := "ProgProgReq")
+				END_WIRE
+
+				WIRE  (FromElementID := 5,
+				       FromParameter := "",
+				       ToElementID := 30,
+				       ToParameter := "HighLimit")
+				END_WIRE
+
+				WIRE  (FromElementID := 6,
 				       FromParameter := "",
 				       ToElementID := 31,
 				       ToParameter := "SourceB")
 				END_WIRE
 
-				WIRE  (FromElementID := 5,
-				       FromParameter := "",
-				       ToElementID := 27,
-				       ToParameter := "SourceA")
-				END_WIRE
-
-				WIRE  (FromElementID := 6,
-				       FromParameter := "",
-				       ToElementID := 28,
-				       ToParameter := "In1")
-				END_WIRE
-
 				WIRE  (FromElementID := 7,
 				       FromParameter := "",
-				       ToElementID := 28,
-				       ToParameter := "In2")
+				       ToElementID := 32,
+				       ToParameter := "SourceB")
 				END_WIRE
 
 				WIRE  (FromElementID := 8,
 				       FromParameter := "",
 				       ToElementID := 28,
-				       ToParameter := "In3")
+				       ToParameter := "SourceA")
 				END_WIRE
 
 				WIRE  (FromElementID := 9,
 				       FromParameter := "",
-				       ToElementID := 28,
-				       ToParameter := "In4")
+				       ToElementID := 29,
+				       ToParameter := "In1")
 				END_WIRE
 
 				WIRE  (FromElementID := 10,
 				       FromParameter := "",
-				       ToElementID := 28,
-				       ToParameter := "In5")
+				       ToElementID := 29,
+				       ToParameter := "In2")
 				END_WIRE
 
 				WIRE  (FromElementID := 11,
 				       FromParameter := "",
-				       ToElementID := 24,
-				       ToParameter := "")
+				       ToElementID := 29,
+				       ToParameter := "In3")
 				END_WIRE
 
 				WIRE  (FromElementID := 12,
 				       FromParameter := "",
-				       ToElementID := 27,
-				       ToParameter := "SourceB")
-				END_WIRE
-
-				WIRE  (FromElementID := 12,
-				       FromParameter := "",
-				       ToElementID := 32,
-				       ToParameter := "SourceA")
+				       ToElementID := 29,
+				       ToParameter := "In4")
 				END_WIRE
 
 				WIRE  (FromElementID := 13,
 				       FromParameter := "",
-				       ToElementID := 28,
-				       ToParameter := "ProgSelector")
+				       ToElementID := 29,
+				       ToParameter := "In5")
 				END_WIRE
 
 				WIRE  (FromElementID := 14,
 				       FromParameter := "",
-				       ToElementID := 28,
-				       ToParameter := "SelectorMode")
+				       ToElementID := 25,
+				       ToParameter := "")
 				END_WIRE
 
-				WIRE  (FromElementID := 19,
+				WIRE  (FromElementID := 15,
 				       FromParameter := "",
-				       ToElementID := 28,
-				       ToParameter := "InsUsed")
+				       ToElementID := 34,
+				       ToParameter := "In1")
 				END_WIRE
 
 				WIRE  (FromElementID := 20,
 				       FromParameter := "",
-				       ToElementID := 30,
-				       ToParameter := "SourceA")
+				       ToElementID := 29,
+				       ToParameter := "InsUsed")
 				END_WIRE
 
 				WIRE  (FromElementID := 21,
@@ -444,49 +558,49 @@
 
 				WIRE  (FromElementID := 22,
 				       FromParameter := "",
-				       ToElementID := 28,
-				       ToParameter := "In3Fault")
+				       ToElementID := 32,
+				       ToParameter := "SourceA")
 				END_WIRE
 
 				WIRE  (FromElementID := 23,
 				       FromParameter := "",
-				       ToElementID := 28,
+				       ToElementID := 29,
+				       ToParameter := "In3Fault")
+				END_WIRE
+
+				WIRE  (FromElementID := 24,
+				       FromParameter := "",
+				       ToElementID := 29,
 				       ToParameter := "In4Fault")
 				END_WIRE
 
-				WIRE  (FromElementID := 27,
+				WIRE  (FromElementID := 28,
 				       FromParameter := "Dest",
-				       ToElementID := 16,
-				       ToParameter := "")
-				END_WIRE
-
-				WIRE  (FromElementID := 28,
-				       FromParameter := "Out",
-				       ToElementID := 15,
-				       ToParameter := "")
-				END_WIRE
-
-				WIRE  (FromElementID := 28,
-				       FromParameter := "SelectedIn",
-				       ToElementID := 18,
-				       ToParameter := "")
-				END_WIRE
-
-				WIRE  (FromElementID := 28,
-				       FromParameter := "Out",
-				       ToElementID := 29,
-				       ToParameter := "In")
-				END_WIRE
-
-				WIRE  (FromElementID := 29,
-				       FromParameter := "Out",
 				       ToElementID := 17,
 				       ToParameter := "")
 				END_WIRE
 
+				WIRE  (FromElementID := 29,
+				       FromParameter := "Out",
+				       ToElementID := 16,
+				       ToParameter := "")
+				END_WIRE
+
+				WIRE  (FromElementID := 29,
+				       FromParameter := "SelectedIn",
+				       ToElementID := 19,
+				       ToParameter := "")
+				END_WIRE
+
+				WIRE  (FromElementID := 29,
+				       FromParameter := "Out",
+				       ToElementID := 30,
+				       ToParameter := "In")
+				END_WIRE
+
 				WIRE  (FromElementID := 30,
-				       FromParameter := "Dest",
-				       ToElementID := 25,
+				       FromParameter := "Out",
+				       ToElementID := 18,
 				       ToParameter := "")
 				END_WIRE
 
@@ -498,8 +612,38 @@
 
 				WIRE  (FromElementID := 32,
 				       FromParameter := "Dest",
+				       ToElementID := 27,
+				       ToParameter := "")
+				END_WIRE
+
+				WIRE  (FromElementID := 33,
+				       FromParameter := "Dest",
+				       ToElementID := 34,
+				       ToParameter := "SelectorIn")
+				END_WIRE
+
+				WIRE  (FromElementID := 34,
+				       FromParameter := "Out",
+				       ToElementID := 29,
+				       ToParameter := "SelectorMode")
+				END_WIRE
+
+				WIRE  (FromElementID := 35,
+				       FromParameter := "Selector",
 				       ToElementID := 28,
-				       ToParameter := "ProgOverrideReq")
+				       ToParameter := "SourceB")
+				END_WIRE
+
+				WIRE  (FromElementID := 35,
+				       FromParameter := "Selector",
+				       ToElementID := 29,
+				       ToParameter := "ProgSelector")
+				END_WIRE
+
+				WIRE  (FromElementID := 35,
+				       FromParameter := "Selector",
+				       ToElementID := 33,
+				       ToParameter := "SourceA")
 				END_WIRE
 
 			END_SHEET
