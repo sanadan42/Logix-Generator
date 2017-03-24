@@ -1,6 +1,6 @@
 	ADD_ON_INSTRUCTION_DEFINITION
 
-	DUCO_SCP_AOI (Revision := "1.0",
+	DUCO_SCP (Revision := "1.0",
 	                                            ExecutePrescan := No,
 	                                            ExecutePostscan := No,
 	                                            ExecuteEnableInFalse := No,
